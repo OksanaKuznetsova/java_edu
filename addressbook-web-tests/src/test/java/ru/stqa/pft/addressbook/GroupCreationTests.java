@@ -14,17 +14,17 @@ public class GroupCreationTests {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
-    login("admin", "secret");
+    login(new LoginAccountData("admin", "secret"));
 
   }
 
-  private void login(String username, String password) {
+  private void login(LoginAccountData loginAccountData) {
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(username);
+    wd.findElement(By.name("user")).sendKeys(loginAccountData.getUsername());
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
+    wd.findElement(By.name("pass")).sendKeys(loginAccountData.getPassword());
     wd.findElement(By.xpath("//input[@value='Login']")).click();
   }
 
@@ -35,7 +35,6 @@ public class GroupCreationTests {
     fillGroupForm(new GroupData("Test group 1", "Header 1", "Footer 1"));
     submitGroupCreation();
     returnToGroupPage();
-    logOut();
   }
 
   private void logOut() {
@@ -72,6 +71,7 @@ public class GroupCreationTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
+    logOut();
     wd.quit();
   }
 
