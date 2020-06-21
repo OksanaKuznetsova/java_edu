@@ -47,4 +47,33 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
   }
+
+  public void editContact() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
+
+  public void updateContactDetails(ContactData contactData) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("middlename"), contactData.getMiddlename());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("nickname"), contactData.getNickname());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompany());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHomephone());
+    type(By.name("mobile"), contactData.getMobilephone());
+    type(By.name("work"), contactData.getWorkphone());
+    type(By.name("email"), contactData.getEmail());
+    select(By.name("bday"), contactData.getBday());
+    select(By.name("bmonth"), contactData.getBmonth());
+    type(By.name("byear"), contactData.getByear());
+    select(By.name("aday"), contactData.getAday());
+    select(By.name("amonth"), contactData.getAmonth());
+    type(By.name("ayear"), contactData.getAyear());
+
+  }
 }
