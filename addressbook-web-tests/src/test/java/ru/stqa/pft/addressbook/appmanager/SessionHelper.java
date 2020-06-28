@@ -11,8 +11,8 @@ public class SessionHelper extends HelperBase {
   }
 
   public void login(LoginAccountData loginAccountData) {
-    type(By.name("user"),loginAccountData.getUsername());
-    type(By.name("pass"),loginAccountData.getPassword());
+    type(By.name("user"), loginAccountData.getUsername());
+    type(By.name("pass"), loginAccountData.getPassword());
     click(By.xpath("//input[@value='Login']"));
   }
 
