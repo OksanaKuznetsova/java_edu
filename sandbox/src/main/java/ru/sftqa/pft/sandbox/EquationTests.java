@@ -24,7 +24,7 @@ public class EquationTests {
   }
 
   @Test
-  public void testlinear() {
+  public void testLinear() {
     Equation e = new Equation(0,1,1);
     Assert.assertEquals(e.rootNumber(), 1);
   }
