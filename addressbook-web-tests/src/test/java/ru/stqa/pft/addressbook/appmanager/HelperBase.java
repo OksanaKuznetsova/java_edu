@@ -38,9 +38,9 @@ public class HelperBase {
     }
   }
 
-  public boolean isElementPresent(By by) {
+  public boolean isElementPresent(By locator) {
     try {
-      wd.findElement(by);
+      wd.findElement(locator);
       return true;
     } catch (NoSuchElementException e) {
       return false;
@@ -48,8 +48,8 @@ public class HelperBase {
   }
 
   protected void select(By locator, String value) {
-    wd.findElement(locator).click();
-    new Select(wd.findElement(locator)).selectByVisibleText(value);
-    wd.findElement(locator).click();
+    if (isElementPresent(locator)) {
+      new Select(wd.findElement(locator)).selectByVisibleText(value);
+    }
   }
 }
