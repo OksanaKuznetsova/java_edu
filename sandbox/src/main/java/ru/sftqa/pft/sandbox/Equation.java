@@ -24,7 +24,7 @@ public class Equation {
 
     } else if (b != 0) {
       n = 1;
-      
+
     } else if (c != 0) {
       n = 0;
 
