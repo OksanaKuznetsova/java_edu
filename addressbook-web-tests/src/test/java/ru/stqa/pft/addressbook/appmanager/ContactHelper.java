@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase {
 
@@ -68,7 +69,7 @@ public class ContactHelper extends HelperBase {
 
   public void createContact(ContactData contactData) {
     initContactCreation();
-    fillContactForm(new ContactData("Petr", "Petrovich", "Petrov", "Pet", "Trainee", "XYZ", "Moscow", "1234567890", "0987654321", "13579", "petr.petrov@mail.ru", "18", "June", "1992", "18", "December", "2020", "Renamed name 1"), true);
+    fillContactForm(contactData, true);
     submitContactCreation();
     returnToHomePage();
   }

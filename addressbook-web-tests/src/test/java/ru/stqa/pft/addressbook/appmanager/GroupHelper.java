@@ -52,6 +52,10 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
+  public boolean isThereASpecificGroup (String groupName) {
+    return isElementPresent(By.xpath("//*[contains(text(),'" + groupName + "')]"));
+  }
+
   public void returnToGroupPage() {
     click(By.linkText("group page"));
   }
