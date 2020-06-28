@@ -9,9 +9,6 @@ public class NavigationHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home page"));
-  }
 
   public void gotoGroupPage() {
     if (isElementPresent(By.tagName("h1"))
