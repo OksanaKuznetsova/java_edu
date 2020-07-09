@@ -5,11 +5,14 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.Comparator;
+import java.util.List;
+
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    ContactData contact = new ContactData("Petr", "Petrovich", "Petrov", "Pet", "Trainee", "XYZ", "Moscow", "1234567890", "0987654321", "13579", "petr.petrov@mail.ru", "18", "June", "1992", "18", "December", "2020", "Group 1" );
+    ContactData contact = new ContactData("Petr", "Petrovich", "Petrov", "Pet", "Trainee", "XYZ", "Moscow", "1234567890", "0987654321", "13579", "petr.petrov@mail.ru", "18", "June", "1992", "18", "December", "2020", "Group 1");
 
     // check if necessary group exists before contact creation
     app.getNavigationHelper().gotoGroupPage();
@@ -17,10 +20,16 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroup(new GroupData(contact.getGroup(), null, null));
     }
     app.getNavigationHelper().goToHomePage();
-    int before = app.getContactHelper().countContacts();
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().createContact(contact);
     app.getNavigationHelper().goToHomePage();
-    int after = app.getContactHelper().countContacts();
-    Assert.assertEquals(after, before + 1);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() + 1);
+
+    before.add(contact);
+    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before, after);
   }
 }
