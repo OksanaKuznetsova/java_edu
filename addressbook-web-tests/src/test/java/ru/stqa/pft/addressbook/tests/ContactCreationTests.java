@@ -16,19 +16,18 @@ public class ContactCreationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     // check if necessary group exists before contact creation
-    app.getNavigationHelper().gotoGroupPage();
-    if (!app.getGroupHelper().isThereASpecificGroup(contact.getGroup())) {
-      app.getGroupHelper().createGroup(new GroupData(contact.getGroup(), null, null));
+    app.goTo().groupPage();
+    if (!app.group().isThereASpecificGroup(contact.getGroup())) {
+      app.group().create(new GroupData(contact.getGroup(), null, null));
     }
   }
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().goToHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().createContact(contact);
-    app.getNavigationHelper().goToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.goTo().homePage();
+    List<ContactData> before = app.contact().list();
+    app.contact().create(contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(contact);

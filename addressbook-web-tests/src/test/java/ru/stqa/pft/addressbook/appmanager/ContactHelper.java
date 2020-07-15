@@ -63,7 +63,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void editContact(int index) {
+  public void initContactModification(int index) {
     wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
   }
 
@@ -71,7 +71,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void createContact(ContactData contactData) {
+  public void create(ContactData contactData) {
     initContactCreation();
     fillContactForm(contactData, true);
     submitContactCreation();
@@ -79,9 +79,16 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void modifyContact(ContactData contact) {
+  public void modify(ContactData contact, int index) {
+    initContactModification(index);
     fillContactForm(contact, false);
     submitContactModification();
+    returnToHomePage();
+  }
+
+  public void delete(int index) {
+    selectContact(index);
+    deleteContact();
     returnToHomePage();
   }
 
@@ -93,11 +100,12 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> rows = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
     for (int i = 2; i <= rows.size(); i++) {
-      String lastName = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+      String lastName = wd.findElement(By.xpath(
+              "//" + "table[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
       String firstName = wd.findElement(By.xpath("//table[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
       ContactData contact = new ContactData(firstName, null, lastName, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
       contacts.add(contact);
