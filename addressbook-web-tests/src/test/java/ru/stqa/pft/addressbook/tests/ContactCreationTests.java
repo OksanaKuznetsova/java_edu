@@ -11,14 +11,17 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-  ContactData contact = new ContactData("Petr", "Petrovich", "Petrov", "Pet", "Trainee", "XYZ", "Moscow", "1234567890", "0987654321", "13579", "petr.petrov@mail.ru", "18", "June", "1992", "18", "December", "2020", "Group 1");
+  ContactData contact = new ContactData()
+          .withLastname("Petrov").withFirstname("Petr").withMiddlename("Petrovich").withNickname("Pet").withTitle("Trainee")
+          .withCompany("XYZ").withAddress("Moscow").withHomephone("1234567890").withMobilephone("0987654321").withWorkphone("13579")
+          .withEmail("petr.petrov@mail.ru").withBday("18").withBmonth("June").withByear("1992").withGroup("Group 1");
 
   @BeforeMethod
   public void ensurePreconditions() {
     // check if necessary group exists before contact creation
     app.goTo().groupPage();
     if (!app.group().isThereASpecificGroup(contact.getGroup())) {
-      app.group().create(new GroupData(contact.getGroup(), null, null));
+      app.group().create(new GroupData().withName(contact.getGroup()));
     }
   }
 
