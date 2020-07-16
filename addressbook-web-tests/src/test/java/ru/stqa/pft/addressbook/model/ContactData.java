@@ -53,15 +53,15 @@ public class ContactData {
     return address;
   }
 
-  public String getHomephone() {
+  public String getHomePhone() {
     return homephone;
   }
 
-  public String getMobilephone() {
+  public String getMobilePhone() {
     return mobilephone;
   }
 
-  public String getWorkphone() {
+  public String getWorkPhone() {
     return workphone;
   }
 
