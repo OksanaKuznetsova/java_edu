@@ -29,7 +29,7 @@ public class ContactModificationTests extends TestBase {
             .withMiddlename("Ivanovna").withNickname("Ann").withTitle("SET").withCompany("Roga&Kopyta").withAddress("Ryazan")
             .withHomephone("1234567890").withMobilephone("0987654321").withWorkphone("13579").withEmail("petr.petrov@mail.ru")
             .withBday("18").withBmonth("June").withByear("1992").withGroup("Group 1");
-    app.contact().modify(modifiedContact);
+    app.contact().modify(contact);
     Contacts after = app.contact().all();
     assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
