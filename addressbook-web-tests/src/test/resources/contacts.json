@@ -3,18 +3,24 @@
     "firstname": "First Name 0",
     "middlename": "Middle Name 0",
     "lastname": "Last Name 0",
+    "address": "City 0 \n Street 0",
+    "email": "First_Name_0@mail.ru",
     "group": "Group 0"
   },
   {
     "firstname": "First Name 1",
     "middlename": "Middle Name 1",
     "lastname": "Last Name 1",
+    "address": "City 1 \n Street 1",
+    "email": "First_Name_1@mail.ru",
     "group": "Group 1"
   },
   {
     "firstname": "First Name 2",
     "middlename": "Middle Name 2",
     "lastname": "Last Name 2",
+    "address": "City 2 \n Street 2",
+    "email": "First_Name_2@mail.ru",
     "group": "Group 2"
   }
 ]

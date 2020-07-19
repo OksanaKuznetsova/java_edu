@@ -296,5 +296,4 @@ public class ContactData {
     return result;
   }
 
-
 }
