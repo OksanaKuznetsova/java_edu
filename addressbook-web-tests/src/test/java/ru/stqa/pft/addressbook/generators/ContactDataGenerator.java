@@ -52,9 +52,9 @@ public class ContactDataGenerator {
   private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
     String json = gson.toJson(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(json);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(json);
+    }
   }
 
   private List<ContactData> generateContacts(int count) {
@@ -63,7 +63,7 @@ public class ContactDataGenerator {
       contacts.add(new ContactData().withFirstname(String.format("First Name %s", i))
               .withLastname(String.format("Last Name %s", i)).withMiddlename(String.format("Middle Name %s", i))
               .withAddress(String.format("City %s \n Street %s", i, i))
-              .withEmail(String.format("First_Name_%s@mail.ru",i))
+              .withEmail(String.format("First_Name_%s@mail.ru", i))
               .withGroup(String.format("Group %s", i)));
     }
     return contacts;
