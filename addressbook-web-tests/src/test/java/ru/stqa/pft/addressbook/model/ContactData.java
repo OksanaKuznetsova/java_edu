@@ -1,58 +1,95 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table (name = "addressbook")
 public class ContactData {
+  @Id
+  @Column (name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column (name = "firstname")
   private String firstname;
   @Expose
+  @Column (name = "middlename")
   private String middlename;
   @Expose
+  @Column (name = "lastname")
   private String lastname;
   @Expose
+  @Column (name = "nickname")
   private String nickname;
   @Expose
+  @Column (name = "title")
   private String title;
   @Expose
+  @Column (name = "company")
   private String company;
   @Expose
+  @Column (name = "address")
+  @Type(type = "text")
   private String address;
   @Expose
+  @Column (name = "home")
+  @Type(type = "text")
   private String homephone;
   @Expose
+  @Column (name = "mobile")
+  @Type(type = "text")
   private String mobilephone;
   @Expose
+  @Column (name = "work")
+  @Type(type = "text")
   private String workphone;
+  @Transient
   private String allPhones;
   @Expose
+  @Column (name = "email")
+  @Type(type = "text")
   private String email;
   @Expose
+  @Column (name = "email2")
+  @Type(type = "text")
   private String email2;
   @Expose
+  @Column (name = "email3")
+  @Type(type = "text")
   private String email3;
+  @Transient
   private String allEmails;
   @Expose
+  @Transient
   private String bday;
   @Expose
+  @Transient
   private String bmonth;
   @Expose
+  @Transient
   private String byear;
   @Expose
+  @Transient
   private String aday;
   @Expose
+  @Transient
   private String amonth;
   @Expose
+  @Transient
   private String ayear;
   @Expose
+  @Transient
   private String group;
   @Expose
-  private File photo;
+  @Column (name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public File getPhoto() {
-    return photo;
+    return new File (photo);
   }
 
   public int getId() {
@@ -263,7 +300,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
