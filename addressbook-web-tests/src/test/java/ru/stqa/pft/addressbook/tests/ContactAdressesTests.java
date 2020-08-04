@@ -19,7 +19,7 @@ public class ContactAdressesTests extends TestBase {
               .withCompany("XYZ").withAddress("Moscow, Sovetskaya str., 18")
               .withHomephone("1234567890").withMobilephone("+0987654321").withWorkphone("13579")
               .withEmail("petr.petrov@mail.ru").withEmail2("petr.petrov@yandex.ru").withEmail3("petr.petrov@google.ru")
-              .withBday("18").withBmonth("June").withByear("1992").withGroup("Group 1"));
+              .withBday("18").withBmonth("June").withByear("1992"));
     }
   }
 
