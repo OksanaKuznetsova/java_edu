@@ -36,6 +36,7 @@ public class ContactCreationTests extends TestBase {
     }
   }
 
+
 /*
   File photo = new File("src/test/resources/morty.jpg");
   ContactData contact = new ContactData()
@@ -44,13 +45,14 @@ public class ContactCreationTests extends TestBase {
           .withEmail("petr.petrov@mail.ru").withBday("18").withBmonth("June").withByear("1992").withGroup("Group 1");
 */
 
+
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
+    Contacts before = app.db().contacts();
     app.goTo().homePage();
-    Contacts before = app.contact().all();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
