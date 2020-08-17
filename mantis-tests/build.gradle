@@ -8,6 +8,10 @@ dependencies {
     compile group: 'org.testng', name: 'testng', version: '7.1.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
     compile group: 'org.hamcrest', name: 'hamcrest', version: '2.2'
+    implementation 'commons-net:commons-net:3.7'
+    implementation 'org.subethamail:subethasmtp:3.1.7'
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
 
 test {
